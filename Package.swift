@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "RxBluetoothKit",
     platforms: [
-        .macOS(.v10_13), .iOS(.v9), .tvOS(.v11), .watchOS(.v4)
+        .macOS(.v10_13), .iOS(.v11), .tvOS(.v11), .watchOS(.v4)
     ],
     products: [
         .library(name: "RxBluetoothKit", targets: ["RxBluetoothKit"])
@@ -30,6 +30,13 @@ let package = Package(
                 sources: [
                     "Source"
                 ]
-            )
+            ),
+        .testTarget(
+            name: "RxBluetoothKitTests",
+            dependencies: ["RxBluetoothKit",
+                           .product(name: "RxBlocking", package: "RxSwift"),
+                           .product(name: "RxTest", package: "RxSwift")],
+            path: "Tests"
+        ),
     ]
 )
