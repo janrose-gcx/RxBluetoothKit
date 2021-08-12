@@ -44,6 +44,8 @@ public enum BluetoothError: Error {
     case publishingL2CAPChannelFailed(CBL2CAPPSM, Error?)
     // Unknown
     case unknownWriteType
+    // Optional peripheral was nil (iOS 15 API Change)
+    case optionalNil
 }
 
 extension BluetoothError: CustomStringConvertible {
@@ -123,6 +125,8 @@ extension BluetoothError: CustomStringConvertible {
         // Unknown
         case .unknownWriteType:
             return "Unknown write type"
+        case .optionalNil:
+            return "Optional peripheral of CBService or servive of CBCharacteristic was nil"
         }
     }
 }

@@ -40,8 +40,10 @@ public class Characteristic {
         self.service = service
     }
 
-    convenience init(characteristic: CBCharacteristic, peripheral: Peripheral) {
-        let service = Service(peripheral: peripheral, service: characteristic.service)
+    convenience init?(characteristic: CBCharacteristic, peripheral: Peripheral) {
+        guard let characteristicService = characteristic.service else { return nil }
+        
+        let service = Service(peripheral: peripheral, service: characteristicService)
         self.init(characteristic: characteristic, service: service)
     }
 
